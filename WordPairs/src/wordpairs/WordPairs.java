@@ -31,6 +31,35 @@ public class WordPairs {
         String[] wordpairs4 = {"eel", "ele", "lee"};
         String[] wordpairs5 = {"aaa", "aab", "aba", "abb", "baa", "bab", "bbb"};
         String[] wordpairs6 = {"top","coder"};
+        
+        //calling the method interesting() to get a number of pairs found back.
+        int count = interesting(wordpairs);
+        System.out.println("First testcase(o). Interesting pairs found = "+count);
+        int count2 = interesting(wordpairs2);
+        System.out.println("Second testcase(1). Interesting pairs found = "+count2);
+        int count3 = interesting(wordpairs3);
+        System.out.println("Third testcase(2). Interesting pairs found = "+count3);
+        int count4 = interesting(wordpairs4);
+        System.out.println("Forth testcase(3). Interesting pairs found = "+count4);
+        int count5 = interesting(wordpairs5);
+        System.out.println("Fifth testcase(5). Interesting pairs found = "+count5);
+        int count6 = interesting(wordpairs6);
+        System.out.println("Sixth testcase(6). Interesting pairs found = "+count6);
     }
     
+    public static int interesting(String[] words){
+        int countPairs = 0;
+        for(int i=0; i<words.length-1;i++){
+            String word1=words[i];
+            for(int j=0; j<word1.length(); j++){
+                char firstLetter=word1.charAt(0);
+                word1=word1.substring(1);
+                word1=word1+firstLetter;
+                if (word1.equals(words[i+1])){
+                    countPairs=countPairs+1;
+                }
+            }
+        }
+        return countPairs;
+    }
 }
