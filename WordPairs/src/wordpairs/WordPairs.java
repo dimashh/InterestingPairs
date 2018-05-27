@@ -47,6 +47,9 @@ public class WordPairs {
         System.out.println("Sixth testcase(6). Interesting pairs found = "+count6);
     }
     
+    /*taking the first word of the array and shifting its first letter to its
+    back. Then checking if the new string matches the next string in the array.
+    */
     public static int interesting(String[] words){
         int countPairs = 0;
         for(int i=0; i<words.length-1;i++){
@@ -55,6 +58,14 @@ public class WordPairs {
                 char firstLetter=word1.charAt(0);
                 word1=word1.substring(1);
                 word1=word1+firstLetter;
+                System.out.println(word1);
+                //check to see if this matches the original string.
+                //it means we shifted all the letters.
+                if(word1.equals(words[i])){
+                    break;
+                }
+                //if the shuffled word1 equals the next string then a pair 
+                //is found.
                 if (word1.equals(words[i+1])){
                     countPairs=countPairs+1;
                 }
