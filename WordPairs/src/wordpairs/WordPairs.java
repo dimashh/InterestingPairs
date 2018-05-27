@@ -29,7 +29,7 @@ public class WordPairs {
         String[] wordpairs2 = {"aaaaa","bbbbb"};
         String[] wordpairs3 = {"ababab", "bababa", "aabbb"};
         String[] wordpairs4 = {"eel", "ele", "lee"};
-        String[] wordpairs5 = {"aaa", "aab", "aba", "abb", "baa", "bab", "bbb"};
+        String[] wordpairs5 = {"aaa", "aab", "aba", "abb", "baa", "bab","bba", "bbb"};
         String[] wordpairs6 = {"top","coder"};
         
         //calling the method interesting() to get a number of pairs found back.
@@ -48,28 +48,32 @@ public class WordPairs {
     }
     
     /*taking the first word of the array and shifting its first letter to its
-    back. Then checking if the new string matches the next string in the array.
+    back. Then checking if the new string matches the one of the strings in the array.
     */
     public static int interesting(String[] words){
         int countPairs = 0;
         String word1="";
-        for(int i=0; i<words.length-1;i++){
+        for(int i=0; i<words.length;i++){
             word1=words[i];
             for(int j=0; j<word1.length(); j++){
                 char firstLetter=word1.charAt(0);
                 word1=word1.substring(1);
                 word1=word1+firstLetter;
-                System.out.println(word1);
+
                 //check to see if this matches the original string.
                 //it means we shifted all the letters.
                 if(word1.equals(words[i])){
                     break;
                 }
-                //if the shuffled word1 equals ones of the strings in the array then they form a pair
-                for(int k=i; k<words.length;k++){
-                    if (word1.equals(words[k]))
+                //if the shuffled word1 equals ones of the strings in the array then they form a pair.
+                //it only considers string that come after it in the array.
+                //this allows the pairs to be distinct. Otherwise, the count will 
+                //be double the result found.
+                for(int k=i+1; k<words.length;k++){
+                    if (word1.equals(words[k])){
                         countPairs=countPairs+1;
                         System.out.println(words[i]+" == "+ words[k]);
+                    }
                 }
             }
         }
