@@ -52,8 +52,9 @@ public class WordPairs {
     */
     public static int interesting(String[] words){
         int countPairs = 0;
+        String word1="";
         for(int i=0; i<words.length-1;i++){
-            String word1=words[i];
+            word1=words[i];
             for(int j=0; j<word1.length(); j++){
                 char firstLetter=word1.charAt(0);
                 word1=word1.substring(1);
@@ -64,10 +65,11 @@ public class WordPairs {
                 if(word1.equals(words[i])){
                     break;
                 }
-                //if the shuffled word1 equals the next string then a pair 
-                //is found.
-                if (word1.equals(words[i+1])){
-                    countPairs=countPairs+1;
+                //if the shuffled word1 equals ones of the strings in the array then they form a pair
+                for(int k=i; k<words.length;k++){
+                    if (word1.equals(words[k]))
+                        countPairs=countPairs+1;
+                        System.out.println(words[i]+" == "+ words[k]);
                 }
             }
         }
